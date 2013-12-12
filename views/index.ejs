@@ -14,7 +14,7 @@
                   zoom: <%=zoom%>,
                   mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
-                var map = new google.maps.Map(document.getElementById("map"),
+                var map = new google.maps.Map(document.getElementById('map'),
                     options);
 
 				// Devices is a JSON array containing all devices from the infrastructure specified in index.js
@@ -34,7 +34,7 @@
 
 						var http_request = new XMLHttpRequest();
 
-						http_request.open("GET", "get-temperature/" + device.deviceID, false);
+						http_request.open('GET', 'get-temperature/' + device.deviceID, false);
 						http_request.send();
 
 						// We guard against possible empty responses. Some devices have no data.
@@ -47,8 +47,12 @@
 
 						var infowindow = new google.maps.InfoWindow({
 							content: 
-								'<p><strong>Temperature:</strong> ' + temperature.value + '&deg;' + temperature.units  +'</p>' +
-								'<p><strong>Timestamp:</strong> ' + temperature.time + '</p>'
+								'<p><strong>Temperature:</strong> ' +
+									temperature.value + '&deg;' + temperature.units  +
+								'</p>' +
+								'<p><strong>Timestamp:</strong> ' +
+									temperature.time +
+								'</p>'
 						});
 
 						infowindow.open(map,marker);

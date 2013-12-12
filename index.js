@@ -7,10 +7,10 @@
 
 var http = require('http');
 
-var app = require("express")();  							// we instantiate express.js as our web application server
+var app = require('express')();  							// we instantiate express.js as our web application server
 
-var apiKey = "l7xx94df7a4c17874c0293835ec6142ae004";		// our iCity application api key
-var icityURL = "icity-gw.icityproject.com";					// API base url
+var apiKey = 'l7xx94df7a4c17874c0293835ec6142ae004';		// our iCity application api key
+var icityURL = 'icity-gw.icityproject.com';					// API base url
 
 var infrastructureID = 19;									// iCity infrastructure ID, 19 in our case
 
@@ -21,7 +21,7 @@ var infrastructureID = 19;									// iCity infrastructure ID, 19 in our case
  *  action: Gets all devices and renders the map template
  */
 
-app.get("/",function (req,res) {
+app.get('/',function (req,res) {
 
 	// Barcelona Latitude and Longitude, plus desired map zoom
 	// A zoom of 10 shows approximately all Barcelona province area
@@ -48,7 +48,7 @@ app.get("/",function (req,res) {
 		// the map
 															
 		getResponse.on('end', function () {
-			res.render("index.ejs", { lat:lat, lon:lon, zoom:zoom, devices:data })
+			res.render('index.ejs', { lat:lat, lon:lon, zoom:zoom, devices:data })
 		})
 	})
 });
@@ -60,7 +60,7 @@ app.get("/",function (req,res) {
  *  action: Gets the temperature data for the requested device and sends it back to the requestor
  */
 
-app.get("/get-temperature/:deviceID",function (req,res) {
+app.get('/get-temperature/:deviceID',function (req,res) {
 
 	// GET request options to retrieve the temperature of a given device.
 	// Note that the property has to be specified as urn:[propertyName].
