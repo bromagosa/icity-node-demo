@@ -1,42 +1,36 @@
 <html>
     <head> 
         <title>iCity NodeJS Demo App</title>
-		<meta author="Bernat Romagosa Carrasquer">
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
         <script type="text/javascript">
 
-			var devices = <%-devices%>; // That's how we access variables in EJS templates
+			var devices = <%-devices%>; 
 				
-			var loadMap = function() {	// Please refer to the GoogleMaps API for explanations on this code 
+			var loadMap = function() {
+
                	var options = {
                 	center: new google.maps.LatLng(41.414932, 2.146791),
                 	zoom: 10,
                 	mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
+
                 var map = new google.maps.Map(document.getElementById('map'), options);
 
-				// Devices is a JSON array containing all devices from the infrastructure specified in index.js
-				// Each device has a couple of properties, including its latitude and longitude
-
 				devices.forEach(function(device) {
+
 					var marker = new google.maps.Marker(
 						{
-							position: new google.maps.LatLng(device.latitude, device.longitude),
+							position: new google.maps.LatLng(/* ToDo: Com accedim a la latitud i la longitud d'un dispositiu? */),
 							map: map,
 							title: device.deviceID
 						});
 					
 					google.maps.event.addListener(marker, 'click', function() {
 
-						// When we click on a marker, we want a pop-up to display its latest temperature reading.
-						// In server.js we have created an entry point named "get-temperature" that does exactly this.
-
 						var http_request = new XMLHttpRequest();
 
-						http_request.open('GET', 'get-temperature/' + device.deviceID, false);
+						http_request.open(/* ToDo */);
 						http_request.send();
-
-						// We guard against possible empty responses. Some devices have no data.
 
 						if (http_request.responseText) {
 							var temperature = JSON.parse(http_request.responseText)[0];
